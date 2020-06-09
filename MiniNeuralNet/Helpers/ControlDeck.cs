@@ -11,7 +11,7 @@ namespace MiniNeuralNet.Helpers
 {
     public static class ControlDeck
     {
-        public static string PassedData { get; set; }
+        public static Dictionary<string, List<string>> PassedData { get; set; }
    
 
         public static void InitPlatform()
@@ -22,8 +22,12 @@ namespace MiniNeuralNet.Helpers
             dfa.ReceiveData(null);
         }
 
-        public static string PresentData()
+        public static Dictionary<string, List<string>> PresentData()
         {
+            foreach(var i in PassedData)
+            {
+                
+            }
             return PassedData;
         }
      

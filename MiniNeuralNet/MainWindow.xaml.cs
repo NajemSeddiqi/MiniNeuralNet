@@ -13,6 +13,8 @@ namespace MiniNeuralNet
     public partial class MainWindow : Window
     {
         public static string FileName = string.Empty;
+        public static string SafeFileName = string.Empty;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -28,9 +30,11 @@ namespace MiniNeuralNet
             if (result == true)
             {
                 FileName = dialog.FileName;
+                SafeFileName = dialog.SafeFileName;
                 Debug.WriteLine(FileName);
                 ControlDeck.InitPlatform();
-                mainTextBlock.Text = ControlDeck.PresentData();           
+                SheetSpecifierWindow sheetSpecifierWindow = new SheetSpecifierWindow();
+                sheetSpecifierWindow.Show();              
             }
             else
             {

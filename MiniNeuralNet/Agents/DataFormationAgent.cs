@@ -45,10 +45,8 @@ namespace MiniNeuralNet.Agents
 
         public override void SendData(List<object> readyData)
         {
-            XlsToObject toObject = new XlsToObject { Sheet = Result.Tables[1] };
-            string[] testList = new string[10];
-            toObject.GetDataDic();                
-            //ControlDeck.PassedData = data.ToString();         
+            XlsToObject toObject = new XlsToObject { Sheet = Result.Tables[1] };                         
+            ControlDeck.PassedData = toObject.GetDataDic(); ;
         }
     }
 }

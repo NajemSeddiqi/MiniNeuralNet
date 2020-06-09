@@ -1,0 +1,27 @@
+﻿<Window x:Class="MiniNeuralNet.SheetSpecifierWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiniNeuralNet"
+        mc:Ignorable="d"
+        Title="SheetSpecifierWindow" Height="253.973" Width="416.575">
+    <Grid Margin="0,0,2,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+        <Label Name="SheetWindowFileName" Content="Label" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="Please choose the sheets you want to include" HorizontalAlignment="Left" Margin="25,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="274"/>
+        <ListView x:Name="SheetWindowList" HorizontalAlignment="Left" Height="100" Margin="25,88,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Confirm" Grid.Column="1" HorizontalAlignment="Left" Margin="135,188,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="37,188,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
+    </Grid>
+</Window>
