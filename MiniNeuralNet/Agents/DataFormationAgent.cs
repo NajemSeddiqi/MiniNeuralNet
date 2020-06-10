@@ -40,13 +40,31 @@ namespace MiniNeuralNet.Agents
 
                 }
             }
+            
             SendData(null);
         }
 
         public override void SendData(List<object> readyData)
         {
-            XlsToObject toObject = new XlsToObject { Sheet = Result.Tables[1] };                         
-            ControlDeck.PassedData = toObject.GetDataDic(); ;
+            List<XlsToObject> toObjectList = new List<XlsToObject>();
+            //foreach (DataTable i in Result.Tables)
+            //{
+            //    ControlDeck.Sheets.Add(i);
+                
+            //}
+
+             for(int i = 0; i < Result.Tables.Count; i++)
+            {
+                ControlDeck.Sheets.Add(Result.Tables[i]);
+                if (!ControlDeck.SelectedSheetNames.Contains(Result.Tables[i].TableName)) return;
+                toObjectList.Add(new XlsToObject  { Sheet = (DataTable) from sheet in ControlDeck.SelectedSheetNames where sheet.Equals(Result.Tables[i].TableName) select Result.Tables[i]});
+            }
+
+             for(int i = 0; i < toObjectList.Count; i++)
+            {
+                ControlDeck.PassedData = toObjectList[i].GetDataDic();
+            }                                      
+                      
         }
     }
 }

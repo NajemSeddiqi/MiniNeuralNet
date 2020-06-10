@@ -21,7 +21,7 @@ namespace MiniNeuralNet
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        {          
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Open Excel File";
             dialog.Filter = "Excel Worksheets | *.xls;*.xlsx;*.csv;*.xlsm";
@@ -31,8 +31,7 @@ namespace MiniNeuralNet
             {
                 FileName = dialog.FileName;
                 SafeFileName = dialog.SafeFileName;
-                Debug.WriteLine(FileName);
-                ControlDeck.InitPlatform();
+                Debug.WriteLine(FileName);              
                 SheetSpecifierWindow sheetSpecifierWindow = new SheetSpecifierWindow();
                 sheetSpecifierWindow.Show();              
             }
@@ -40,6 +39,7 @@ namespace MiniNeuralNet
             {
                 return;
             }
+            
         }
     }
 }

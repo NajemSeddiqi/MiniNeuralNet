@@ -1,6 +1,7 @@
 ﻿using MiniNeuralNet.Agents;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,13 @@ namespace MiniNeuralNet.Helpers
     public static class ControlDeck
     {
         public static Dictionary<string, List<string>> PassedData { get; set; }
+        public static List<DataTable> Sheets { get; set; }
+
+        public static List<string> SelectedSheetNames { get; set; }
+
+        
+
+        static ControlDeck() { Sheets = new List<DataTable>(); SelectedSheetNames = new List<string>(); }
    
 
         public static void InitPlatform()
@@ -24,10 +32,7 @@ namespace MiniNeuralNet.Helpers
 
         public static Dictionary<string, List<string>> PresentData()
         {
-            foreach(var i in PassedData)
-            {
-                
-            }
+            
             return PassedData;
         }
      

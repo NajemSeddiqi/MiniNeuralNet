@@ -6,8 +6,7 @@ namespace MiniNeuralNet.Helpers
 {
     public class XlsToObject
     {
-        public DataTable Sheet { get; set; }
-        private string Data { get; set; }
+        public DataTable Sheet { get; set; }     
 
         private Dictionary<string, List<string>> MyDic;
 
@@ -18,7 +17,7 @@ namespace MiniNeuralNet.Helpers
             MyDic = new Dictionary<string, List<string>>();
         }
 
-        private List<string> PopulateList(List<string> list, string colName, DataColumn col)
+        private List<string> PopulateList(List<string> list, DataColumn col)
         {
 
             for (int i = 1; i < Sheet.Rows.Count; i++)
@@ -38,7 +37,7 @@ namespace MiniNeuralNet.Helpers
             {
                 string key = Sheet.Rows[0][col.ColumnName].ToString();
                 lst = new List<string>();
-                MyDic.Add(key, PopulateList(lst, key, col));
+                MyDic.Add(key, PopulateList(lst, col));
             }
 
 
