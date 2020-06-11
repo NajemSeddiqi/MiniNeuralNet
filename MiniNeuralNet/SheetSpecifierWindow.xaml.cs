@@ -43,13 +43,22 @@ namespace MiniNeuralNet
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ControlDeck.SelectedSheetNames = SheetNames;
-            ControlDeck.InitPlatform();
-        }
+            ControlDeck.SelectedSheetNames = SheetNames;          
+        }  
 
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SheetWindowList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SheetNames = (List<string>) e.AddedItems;
+            //SheetNames.Add(e.AddedItems[0].ToString());
+            foreach (var i in e.AddedItems)
+            {             
+                if (!SheetNames.Contains(i.ToString())) SheetNames.Add(i.ToString());
+
+            }
+            foreach(var i in e.RemovedItems)
+            {
+                if (SheetNames.Contains(i.ToString())) SheetNames.Remove(i.ToString());
+            }
+            Debug.WriteLine(SheetNames.Count);          
         }
     }
 }

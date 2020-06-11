@@ -13,15 +13,15 @@
         </Grid.ColumnDefinitions>
         <Label Name="SheetWindowFileName" Content="Label" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Please choose the sheets you want to include" HorizontalAlignment="Left" Margin="25,41,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="274"/>
-        <ListView SelectionMode="Multiple" x:Name="SheetWindowList" HorizontalAlignment="Left" Height="100" Margin="25,88,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ListView_SelectionChanged">
+        <Button Content="Confirm" Grid.Column="1" HorizontalAlignment="Left" Margin="135,188,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="37,188,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <ListView x:Name="SheetWindowList" SelectionMode="Multiple" HorizontalAlignment="Left" Height="112" Margin="25,96,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="SheetWindowList_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TableName}" Header="Sheet      "/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Confirm" Grid.Column="1" HorizontalAlignment="Left" Margin="135,188,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <Button Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="37,188,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
     </Grid>
 </Window>

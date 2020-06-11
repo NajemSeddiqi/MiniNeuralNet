@@ -47,13 +47,13 @@ namespace MiniNeuralNet.Agents
         public override void SendData(List<object> readyData)
         {
             List<XlsToObject> toObjectList = new List<XlsToObject>();
-            //foreach (DataTable i in Result.Tables)
-            //{
-            //    ControlDeck.Sheets.Add(i);
-                
-            //}
+            foreach (DataTable i in Result.Tables)
+            {
+                ControlDeck.Sheets.Add(i);
 
-             for(int i = 0; i < Result.Tables.Count; i++)
+            }
+
+            for (int i = 0; i < Result.Tables.Count; i++)
             {
                 ControlDeck.Sheets.Add(Result.Tables[i]);
                 if (!ControlDeck.SelectedSheetNames.Contains(Result.Tables[i].TableName)) return;
