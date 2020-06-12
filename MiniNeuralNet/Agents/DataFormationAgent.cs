@@ -24,6 +24,7 @@ namespace MiniNeuralNet.Agents
             PassedData = new List<Dictionary<string, List<string>>>();
         }
         
+        //TODO: Use conditional operator ? to infer whether the sheet is appropriate for data formation
         public override void ReceiveData(List<object> receivedData)
         {
             using (var stream = File.Open(MainWindow.FileName, FileMode.Open, FileAccess.Read))
