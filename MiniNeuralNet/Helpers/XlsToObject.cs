@@ -43,7 +43,7 @@ namespace MiniNeuralNet.Helpers
 
             foreach (KeyValuePair<string, List<string>> k in MyDic)
             {
-                Debug.WriteLine(string.Format("Key = {0}, Value = {1}", k.Key, k.Value[5]));
+                Debug.WriteLine(string.Format("Key = {0}, Value = {1}", k.Key, k.Value[0]));
             }
 
             return MyDic;

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,9 @@ namespace MiniNeuralNet.Helpers
 {
     public static class ControlDeck
     {
-        public static Dictionary<string, List<string>> PassedData { get; set; }
         public static List<DataTable> Sheets { get; set; }
-
         public static List<string> SelectedSheetNames { get; set; }
+        private static readonly DataFormationAgent Dfa = new DataFormationAgent { Name = "Alpha", Residency = "Container_1" };
 
         
 
@@ -25,15 +25,16 @@ namespace MiniNeuralNet.Helpers
         public static void InitPlatform()
         {
             Container alphaContainer = new Container { Name = "Container_1" };          
-            DataFormationAgent dfa = new DataFormationAgent { Name = "Victor", Residency = "Container_1" };
-            Platform.InitPlatform(alphaContainer, dfa);
-            dfa.ReceiveData(null);
+            Platform.InitPlatform(alphaContainer, Dfa);
+            Dfa.ReceiveData(null);
         }
 
-        public static Dictionary<string, List<string>> PresentData()
+        public static List<Dictionary<string, List<string>>> PresentData()
         {
-            
-            return PassedData;
+            List<Dictionary<string, List<string>>> lst = new List<Dictionary<string, List<string>>>();
+            lst = Dfa.SelectSheet();
+            Debug.WriteLine(lst.Count);
+            return null;
         }
      
     }
