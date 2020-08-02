@@ -60,7 +60,7 @@ namespace MiniNeuralNet.Agents
 
             for (int i = 0; i < toObjectList.Count; i++)
             {
-                PassedData.Add(toObjectList[i].GetDataDic());
+                PassedData.Add(toObjectList[i].GetDataDictionary());
             }
             return PassedData;
         }

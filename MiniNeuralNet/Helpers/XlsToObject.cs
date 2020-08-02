@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 
@@ -8,42 +9,42 @@ namespace MiniNeuralNet.Helpers
     {
         public DataTable Sheet { get; set; }
 
-        private readonly Dictionary<string, List<string>> MyDic;
+        private readonly Dictionary<string, List<string>> sheetDataDictionary;
 
-        private List<string> lst;
 
         public XlsToObject()
         {
-            MyDic = new Dictionary<string, List<string>>();
+            sheetDataDictionary = new Dictionary<string, List<string>>();
         }
 
-        private List<string> PopulateList(List<string> list, DataColumn col)
-        {
-            for (int i = 1; i < Sheet.Rows.Count; i++)
-            {
-                string val = Sheet.Rows[i][col.ColumnName].ToString();
-                list.Add(val);
-            }
-
-            return list;
-        }
-
-        public Dictionary<string, List<string>> GetDataDic()
+        public Dictionary<string, List<string>> GetDataDictionary()
         {
             foreach (DataColumn col in Sheet.Columns)
             {
                 string key = Sheet.Rows[0][col.ColumnName].ToString();
-                lst = new List<string>();
-                MyDic.Add(key, PopulateList(lst, col));
+                sheetDataDictionary.Add(key, PopulateList(col));
             }
 
             //Remember to remove this
-            foreach (KeyValuePair<string, List<string>> k in MyDic)
+            foreach (KeyValuePair<string, List<string>> k in sheetDataDictionary)
             {
                 Debug.WriteLine(string.Format("Key = {0}, Value = {1}", k.Key, k.Value[0]));
             }
 
-            return MyDic;
+            return sheetDataDictionary;
         }
+
+        private List<string> PopulateList(DataColumn col)
+        {
+            List<string> rowValues = new List<string>();
+            for (int i = 1; i < Sheet.Rows.Count; i++)
+            {
+                string val = Sheet.Rows[i][col.ColumnName].ToString();
+                rowValues.Add(val);
+            }
+
+            return rowValues;
+        }
+
     }
 }

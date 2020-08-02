@@ -26,7 +26,7 @@ namespace MiniNeuralNet
             };
             bool? result = dialog.ShowDialog();
 
-            if (result != true)
+            if ((bool)!result)
             {
                 return;
             }
