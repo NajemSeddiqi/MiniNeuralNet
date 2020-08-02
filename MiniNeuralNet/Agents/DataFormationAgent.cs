@@ -1,33 +1,27 @@
-﻿using MiniNeuralNet.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MiniNeuralNet;
-using System.IO;
-using ExcelDataReader;
-using System.Diagnostics;
-using System.Data;
+﻿using ExcelDataReader;
 using MiniNeuralNet.Helpers;
-using System.Dynamic;
+using MiniNeuralNet.Models;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
 
 namespace MiniNeuralNet.Agents
 {
-    class DataFormationAgent : Agent
+    internal class DataFormationAgent : Agent
     {
         private DataSet Result;
         public static List<Dictionary<string, List<string>>> PassedData { get; set; }
+
         public DataFormationAgent()
         {
             Result = new DataSet();
             PassedData = new List<Dictionary<string, List<string>>>();
         }
-        
-        //TODO: Use conditional operator ? to infer whether the sheet is appropriate for data formation
+
+        //TODO: infer whether the sheet is appropriate for data formation
         public override void ReceiveData(List<object> receivedData)
         {
-            using (var stream = File.Open(MainWindow.FileName, FileMode.Open, FileAccess.Read))
+            using (var stream = File.Open(ControlDeck.FileName, FileMode.Open, FileAccess.Read))
             {
                 using (var reader = ExcelReaderFactory.CreateReader(stream))
                 {
@@ -35,29 +29,28 @@ namespace MiniNeuralNet.Agents
                     {
                         while (reader.Read())
                         {
-                            
                         }
                     } while (reader.NextResult());
-                    
+
                     Result = reader.AsDataSet();
                 }
-            }        
+            }
             SendData(null);
         }
 
         public override void SendData(List<object> readyData)
-        {          
-            foreach (DataTable i in Result.Tables)
+        {
+            foreach (var i in Result.Tables)
             {
-                ControlDeck.Sheets.Add(i);
-            }                                                                       
+                ControlDeck.Sheets.Add((DataTable)i);
+            }
         }
 
-        public List<Dictionary<string, List<string>>> SelectSheet()      
+        public List<Dictionary<string, List<string>>> SelectedSheets()
         {
             List<XlsToObject> toObjectList = new List<XlsToObject>();
-            
-            for(int i = 0; i < Result.Tables.Count; i++)
+
+            for (int i = 0; i < Result.Tables.Count; i++)
             {
                 if (ControlDeck.SelectedSheetNames.Contains(Result.Tables[i].TableName))
                 {

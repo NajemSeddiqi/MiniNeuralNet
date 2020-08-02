@@ -1,18 +1,13 @@
-﻿using MiniNeuralNet.Agents;
+﻿using MiniNeuralNet.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MiniNeuralNet.Models;
-using System.Diagnostics;
 
 namespace MiniNeuralNet.Helpers
 {
     public static class Platform
     {
-        static List<Container> ContainerList { get; set; }
-              
+        private static List<Container> ContainerList { get; set; }
+
         public static void InitPlatform(Container firstContainer, Agent firstAgent)
         {
             ContainerList = new List<Container>();
@@ -20,10 +15,10 @@ namespace MiniNeuralNet.Helpers
             AddAgent(firstAgent);
         }
 
-        public static Boolean AddContainer(Container container)
+        public static bool AddContainer(Container container)
         {
             container.AgentList = new List<Agent>();
-            foreach(Container c in ContainerList)
+            foreach (var c in ContainerList)
             {
                 if (container.Name.Equals(c.Name)) return false;
                 else
@@ -34,10 +29,9 @@ namespace MiniNeuralNet.Helpers
             return true;
         }
 
-    
-        public static Boolean AddAgent(Agent agent)
+        public static bool AddAgent(Agent agent)
         {
-            foreach(Container c in ContainerList)
+            foreach (var c in ContainerList)
             {
                 if (agent.Residency.Equals(c.Name))
                 {
@@ -47,7 +41,7 @@ namespace MiniNeuralNet.Helpers
                     }
                     else
                     {
-                        foreach (Agent a in c.AgentList.ToArray())
+                        foreach (var a in c.AgentList.ToArray())
                         {
                             if (a.Name.Equals(agent.Name)) return false;
                             else
@@ -59,7 +53,6 @@ namespace MiniNeuralNet.Helpers
                 }
             }
             return true;
-        } 
-           
+        }
     }
 }

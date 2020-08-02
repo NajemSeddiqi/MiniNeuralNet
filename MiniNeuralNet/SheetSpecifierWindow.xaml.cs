@@ -1,18 +1,7 @@
 ﻿using MiniNeuralNet.Helpers;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MiniNeuralNet
 {
@@ -22,16 +11,17 @@ namespace MiniNeuralNet
     public partial class SheetSpecifierWindow : Window
     {
         private List<string> SheetNames { get; set; }
+
         public SheetSpecifierWindow()
-        {           
+        {
             InitializeComponent();
             ControlDeck.InitPlatform();
             InitListView();
         }
 
-        void InitListView()
+        private void InitListView()
         {
-            SheetWindowFileName.Content = MainWindow.SafeFileName;
+            SheetWindowFileName.Content = ControlDeck.SafeFileName;
             SheetWindowList.ItemsSource = ControlDeck.Sheets;
             SheetNames = new List<string>();
         }
@@ -48,20 +38,20 @@ namespace MiniNeuralNet
             ControlDeck.PresentData();
             ResetListView();
             this.Close();
-        }  
+        }
 
         private void SheetWindowList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             foreach (var i in e.AddedItems)
-            {             
+            {
                 if (!SheetNames.Contains(i.ToString())) SheetNames.Add(i.ToString());
             }
-            foreach(var i in e.RemovedItems)
+            foreach (var i in e.RemovedItems)
             {
                 if (SheetNames.Contains(i.ToString())) SheetNames.Remove(i.ToString());
-            }       
+            }
         }
-        
+
         public void ResetListView()
         {
             foreach (var i in ControlDeck.Sheets.ToArray())

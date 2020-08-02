@@ -6,9 +6,9 @@ namespace MiniNeuralNet.Helpers
 {
     public class XlsToObject
     {
-        public DataTable Sheet { get; set; }     
+        public DataTable Sheet { get; set; }
 
-        private Dictionary<string, List<string>> MyDic;
+        private readonly Dictionary<string, List<string>> MyDic;
 
         private List<string> lst;
 
@@ -19,7 +19,6 @@ namespace MiniNeuralNet.Helpers
 
         private List<string> PopulateList(List<string> list, DataColumn col)
         {
-
             for (int i = 1; i < Sheet.Rows.Count; i++)
             {
                 string val = Sheet.Rows[i][col.ColumnName].ToString();
@@ -29,10 +28,8 @@ namespace MiniNeuralNet.Helpers
             return list;
         }
 
-
         public Dictionary<string, List<string>> GetDataDic()
         {
-
             foreach (DataColumn col in Sheet.Columns)
             {
                 string key = Sheet.Rows[0][col.ColumnName].ToString();
@@ -40,7 +37,7 @@ namespace MiniNeuralNet.Helpers
                 MyDic.Add(key, PopulateList(lst, col));
             }
 
-
+            //Remember to remove this
             foreach (KeyValuePair<string, List<string>> k in MyDic)
             {
                 Debug.WriteLine(string.Format("Key = {0}, Value = {1}", k.Key, k.Value[0]));

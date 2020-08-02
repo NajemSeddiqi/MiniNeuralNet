@@ -3,7 +3,6 @@ using MiniNeuralNet.Helpers;
 using System;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace MiniNeuralNet
 {
@@ -12,9 +11,7 @@ namespace MiniNeuralNet
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string FileName = string.Empty;
-        public static string SafeFileName = string.Empty;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,21 +24,21 @@ namespace MiniNeuralNet
                 Title = "Open Excel File",
                 Filter = "Excel Worksheets | *.xls;*.xlsx;*.csv;*.xlsm"
             };
-            Nullable<bool> result = dialog.ShowDialog();
-      
-            if (result == true)
-            {
-                FileName = dialog.FileName;
-                SafeFileName = dialog.SafeFileName;
-                Debug.WriteLine(FileName);              
-                SheetSpecifierWindow sheetSpecifierWindow = new SheetSpecifierWindow();              
-                sheetSpecifierWindow.Show();              
-            }
-            else
+            bool? result = dialog.ShowDialog();
+
+            if (result != true)
             {
                 return;
             }
-            
+            else
+            {
+                ControlDeck.FileName = dialog.FileName;
+                ControlDeck.SafeFileName = dialog.SafeFileName;
+                Debug.WriteLine(ControlDeck.FileName);
+                SheetSpecifierWindow sheetSpecifierWindow = new SheetSpecifierWindow();
+                sheetSpecifierWindow.Show();
+            }
+
         }
     }
 }

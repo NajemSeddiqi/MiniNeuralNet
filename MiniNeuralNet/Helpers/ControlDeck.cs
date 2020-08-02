@@ -1,41 +1,35 @@
 ﻿using MiniNeuralNet.Agents;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
 
 namespace MiniNeuralNet.Helpers
 {
     public static class ControlDeck
     {
+        public static string FileName = string.Empty;
+        public static string SafeFileName = string.Empty;
         public static List<DataTable> Sheets { get; set; }
         public static List<string> SelectedSheetNames { get; set; }
         private static readonly DataFormationAgent Dfa = new DataFormationAgent { Name = "Alpha", Residency = "Container_1" };
 
-        
-
-        static ControlDeck() { Sheets = new List<DataTable>(); SelectedSheetNames = new List<string>(); }
-   
+        static ControlDeck()
+        {
+            Sheets = new List<DataTable>();
+            SelectedSheetNames = new List<string>();
+        }
 
         public static void InitPlatform()
         {
-            Container alphaContainer = new Container { Name = "Container_1" };          
+            Container alphaContainer = new Container { Name = "Container_1" };
             Platform.InitPlatform(alphaContainer, Dfa);
+            //first data reception will be null because data is initiated from the user and not an agent
             Dfa.ReceiveData(null);
         }
 
         public static List<Dictionary<string, List<string>>> PresentData()
         {
-            List<Dictionary<string, List<string>>> lst = new List<Dictionary<string, List<string>>>();
-            lst = Dfa.SelectSheet();
-            Debug.WriteLine(lst.Count);
-            return null;
+            //Do certain changes on the data here before returning
+            return Dfa.SelectedSheets();
         }
-     
     }
 }
