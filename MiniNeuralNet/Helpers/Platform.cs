@@ -1,5 +1,4 @@
 ﻿using MiniNeuralNet.Models;
-using System;
 using System.Collections.Generic;
 
 namespace MiniNeuralNet.Helpers
@@ -44,10 +43,7 @@ namespace MiniNeuralNet.Helpers
                         foreach (var a in c.AgentList.ToArray())
                         {
                             if (a.Name.Equals(agent.Name)) return false;
-                            else
-                            {
-                                c.AgentList.Add(agent);
-                            }
+                            c.AgentList.Add(agent);
                         }
                     }
                 }
