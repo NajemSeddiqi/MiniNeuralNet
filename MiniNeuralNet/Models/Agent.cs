@@ -10,6 +10,7 @@ namespace MiniNeuralNet.Models
     {
         public string Name { get; set; }
         public string Residency { get; set; }
+        //Change this to Generic IList or something similar to avoid performance penalties later
         public abstract void SendData(List<object> readyData);
         public abstract void ReceiveData(List<object> receivedData);
     }
